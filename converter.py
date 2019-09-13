@@ -1,4 +1,10 @@
 #!/usr/env python
+# @dPys and @anibalsolon
+# 9/13/2019
+
+'''
+A tool for converting nipype interfaces to nipype 2.0 (i.e. pydra) tasks
+'''
 
 # Nipype1topydratask
 def Nipype1topydratask(interface):
