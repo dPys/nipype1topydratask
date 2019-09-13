@@ -37,3 +37,26 @@ calc.inputs.outputtype = 'NIFTI'
 
 # New
 out_shell_task = Nipype1topydratask(calc)
+
+# Case 3: Simple interface
+# Old
+from nipype.interfaces.base import traits, traits_extension
+from nipype.interfaces.base import (SimpleInterface, BaseInterfaceInputSpec, TraitedSpec)
+def double(x):
+    return 2 * x
+
+class DoubleInputSpec(BaseInterfaceInputSpec):
+    x = traits.Float(mandatory=True)
+
+class DoubleOutputSpec(TraitedSpec):
+    doubled = traits.Float()
+
+class Double(SimpleInterface):
+    input_spec = DoubleInputSpec
+    output_spec = DoubleOutputSpec
+
+    def _run_interface(self, runtime):
+        self._results['doubled'] = double(self.inputs.x)
+        return runtime
+
+dbl = Double()
